@@ -28,7 +28,7 @@ class MainView(TemplateView):
 class LoginView(FormView):
     form_class = AuthenticationForm
     template_name = 'user/login.html'
-    success_url = '/'
+    success_url = reverse_lazy('mainpage')
 
     @method_decorator(sensitive_post_parameters('password'))
     @method_decorator(csrf_protect)
@@ -73,7 +73,7 @@ class TaskListView(ListView):
 
 class TaskCreateView(CreateView):
     model = Task
-    fields = ('user', 'name', 'priority')
+    fields = ('name', 'priority')
     template_name = 'task/create.html'
     success_url = reverse_lazy('task_list')
 
