@@ -32,9 +32,11 @@ TIME_ZONE = 'Poland'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'pl-pl'
+LANGUAGE_CODE = 'en-gb'
 
 SITE_ID = 1
+
+LOGIN_URL = 'login/'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
