@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load history %}
 
 {% block content %}
     <form method="post" action="{% url 'task_update' task.pk %}" class="form">
@@ -10,11 +11,26 @@
         {% endbuttons %}
     </form>
 
-    <table>
-    {% for revison in task_versions %}
-        <tr>
-        <td>{{ revison }}</td>
-        </tr>
-    {% endfor %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Name</th>
+                <th>Realized</th>
+                <th>Priority</th>
+                <th>Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for revison in task_versions %}
+                <tr>
+                    <td>{% get_username revison.field_dict.user %}</td>
+                    <td>{{ revison.field_dict.name }}</td>
+                    <td>{{ revison.field_dict.is_realized }}</td>
+                    <td>{{ revison.field_dict.priority }}</td>
+                    <td>{{ revison.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
