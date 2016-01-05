@@ -1,5 +1,6 @@
 django==1.9
 psycopg2==2.6.1
 django-reversion==1.10
+django-debug-toolbar==1.4
 django-bootstrap3
 djangorestframework

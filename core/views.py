@@ -2,6 +2,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.core.urlresolvers import reverse_lazy
+from django.forms.models import modelformset_factory
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
@@ -11,7 +12,7 @@ from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateVi
 from django.views.generic.list import ListView
 from reversion import revisions as reversion
 
-from core.models import Task
+from core.models import Task, TaskListElement
 
 
 class MainView(TemplateView):
@@ -69,7 +70,7 @@ class TaskListView(ListView):
         return super(TaskListView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Task.objects.filter(user=self.request.user)
+        return Task.objects.prefetch_related('tasklistelement_set').filter(user=self.request.user)
 
 
 class TaskCreateView(CreateView):
@@ -88,13 +89,21 @@ class TaskUpdateView(UpdateView):
     fields = ('user', 'name', 'is_realized', 'priority')
     template_name = 'task/edit.html'
     success_url = reverse_lazy('task_list')
+    item_formset = modelformset_factory(model=TaskListElement, extra=2, can_delete=True, fields=('checked', 'description'))
 
     @method_decorator(login_required())
     def dispatch(self, request, *args, **kwargs):
         return super(TaskUpdateView, self).dispatch(request, *args, **kwargs)
 
+    def form_valid(self, form):
+        formset = self.item_formset(self.request.POST)
+        if formset.is_valid():
+            formset.save()
+        return super(TaskUpdateView, self).form_valid(form)
+
     def get_context_data(self, **kwargs):
         kwargs['task_versions'] = reversion.get_for_object(self.object).get_unique()
+        kwargs['item_formset'] = self.item_formset(queryset=TaskListElement.objects.filter(task=self.object))
         return super(TaskUpdateView, self).get_context_data(**kwargs)
 
 

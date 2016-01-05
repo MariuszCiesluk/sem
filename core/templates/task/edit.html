@@ -6,7 +6,13 @@
     <form method="post" action="{% url 'task_update' task.pk %}" class="form">
         {% csrf_token %}
          {% bootstrap_form form %}
-        {% buttons %}
+
+        {{ item_formset.management_form }}
+        {% for form in item_formset %}
+            {% bootstrap_form form %}
+        {% endfor %}
+
+                {% buttons %}
             <button type="submit" class="btn btn-primary">Update Task</button>
         {% endbuttons %}
     </form>

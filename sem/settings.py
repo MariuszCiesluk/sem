@@ -87,6 +87,7 @@ SECRET_KEY = 'zx$g4^6_zsaahvxhw_fso(r09=vs$w=*3hxq65@&amp;ep1zb$&amp;*#4'
 
 MIDDLEWARE_CLASSES = (
     'reversion.middleware.RevisionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -140,6 +141,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'rest_framework',
     'reversion',
+    'debug_toolbar',
 )
 
 REST_FRAMEWORK = {
@@ -149,6 +151,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
+INTERNAL_IPS = []
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
