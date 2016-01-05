@@ -5,7 +5,7 @@
       <a class="btn btn-large btn-info" href="{% url 'task_create' %}">Create New Task</a>
     </div>
     <div class="table-responsive">
-    <table class="table-striped">
+    <table class="table table-striped">
         <tbody>
             {% for task in task_list %}
                 <tr>
@@ -25,9 +25,10 @@
                     <td>{{ task.priority }}</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <div id="browse_app">
                           <a class="btn btn-info" href="{% url 'task_update' task.pk %}">Update Task</a>
+                          <a class="btn btn-info" href="{% url 'task_delete' task.pk %}">Delete Task</a>
                         </div>
                     </td>
                 </tr>

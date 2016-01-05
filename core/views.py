@@ -1,17 +1,14 @@
-from django.views.generic.list import ListView
-
+from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-
-from django.conf import settings
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.views.generic.list import ListView
 
 from core.models import Task
 
@@ -103,3 +100,6 @@ class TaskDeleteView(DeleteView):
     @method_decorator(login_required())
     def dispatch(self, request, *args, **kwargs):
         return super(TaskDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
