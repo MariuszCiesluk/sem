@@ -10,4 +10,4 @@ class Task(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length=255)
     is_realized = models.NullBooleanField()
-    priority = models.CharField(choices=PRIORITIES)
+    priority = models.CharField(max_length=255, choices=PRIORITIES)
