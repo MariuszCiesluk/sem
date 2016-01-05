@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
+from reversion import revisions as reversion
 
 from core.constants import PRIORITIES
 
 
-# class User(models.AbstractBaseUser):
-
+@reversion.register()
 class Task(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length=255)

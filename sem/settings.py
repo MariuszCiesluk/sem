@@ -94,6 +94,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'reversion.middleware.RevisionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,6 +129,7 @@ INSTALLED_APPS = (
     'core',
     'bootstrap3',
     'rest_framework',
+    'reversion',
 )
 
 REST_FRAMEWORK = {
