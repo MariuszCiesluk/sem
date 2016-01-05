@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <form method="post" action="{% url 'task_create' %}" class="form">
+        {% csrf_token %}
+         {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Create Task</button>
+        {% endbuttons %}
+    </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Task List Page {% endblock %}
+{% block content %}
+    <div id="browse_app">
+      <a class="btn btn-large btn-info" href="{% url 'task_create' %}">Create New Task</a>
+    </div>
+    <div class="table-responsive">
+    <table class="table-striped">
+        <tbody>
+            {% for task in task_list %}
+                <tr>
+                    <td>user</td>
+                    <td>{{ task.user }}</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>{{ task.name }}</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>{{ task.is_realized }}</td>
+                </tr>
+                <tr>
+                    <td>priority</td>
+                    <td>{{ task.priority }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="browse_app">
+                          <a class="btn btn-info" href="{% url 'task_update' task.pk %}">Update Task</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    </div>
+{% endblock %}
