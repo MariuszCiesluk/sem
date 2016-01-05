@@ -11,3 +11,10 @@ class Task(models.Model):
     name = models.CharField(max_length=255)
     is_realized = models.NullBooleanField()
     priority = models.CharField(max_length=255, choices=PRIORITIES)
+
+
+class TaskListElement(models.Model):
+    task = models.ForeignKey(Task)
+    checked = models.NullBooleanField()
+    description = models.CharField(max_length=255)
+
