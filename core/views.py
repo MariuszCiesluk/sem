@@ -68,7 +68,7 @@ class TaskListView(ListView):
 
     @method_decorator(login_required())
     def dispatch(self, request, *args, **kwargs):
-        return super(MainView, self).dispatch(request, *args, **kwargs)
+        return super(TaskListView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
