@@ -9,4 +9,12 @@
             <button type="submit" class="btn btn-primary">Update Task</button>
         {% endbuttons %}
     </form>
+
+    <table>
+    {% for revison in task_versions %}
+        <tr>
+        <td>{{ revison }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 {% endblock %}

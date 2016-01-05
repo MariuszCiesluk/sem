@@ -9,6 +9,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
+from reversion import revisions as reversion
 
 from core.models import Task
 
@@ -91,6 +92,10 @@ class TaskUpdateView(UpdateView):
     @method_decorator(login_required())
     def dispatch(self, request, *args, **kwargs):
         return super(TaskUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        kwargs['task_versions'] = reversion.get_for_object(self.object).get_unique()
+        return super(TaskUpdateView, self).get_context_data(**kwargs)
 
 
 class TaskDeleteView(DeleteView):

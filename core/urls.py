@@ -3,7 +3,7 @@ from django.conf.urls import *
 from core.views import MainView, LoginView, LogoutView, RegistrationView, TaskCreateView, TaskListView, TaskUpdateView, \
     TaskDeleteView
 
-urlpatterns = patterns('',
+urlpatterns = (
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^registration/$', RegistrationView.as_view(), name='registration'),

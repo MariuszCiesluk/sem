@@ -4,8 +4,8 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-                       url(r'^admin/', include(admin.site.urls)),
-                       url(r'^tasks/', include('core.rest_urls')),
-                       url(r'^', include('core.urls')),
-                       )
+urlpatterns = (
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^tasks/', include('core.rest_urls')),
+    url(r'^', include('core.urls')),
+)
