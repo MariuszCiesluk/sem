@@ -17,6 +17,10 @@
                     <td>{{ task.name }}</td>
                 </tr>
                 <tr>
+                    <td>elements</td>
+                    <td>{% for element in task.tasklistelement_set.all %} {{ element }}<br> {% endfor %}</td>
+                </tr>
+                <tr>
                     <td>status</td>
                     <td>{{ task.is_realized }}</td>
                 </tr>
