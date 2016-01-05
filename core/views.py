@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 
 from core.models import Task
@@ -30,7 +30,7 @@ class MainView(TemplateView):
 
 class LoginView(FormView):
     form_class = AuthenticationForm
-    template_name = 'login.html'
+    template_name = 'user/login.html'
     success_url = '/'
 
     @method_decorator(sensitive_post_parameters('password'))
@@ -45,7 +45,7 @@ class LoginView(FormView):
 
 
 class LogoutView(RedirectView):
-    url = '/'
+    url = reverse_lazy('mainpage')
 
     def get(self, request, *args, **kwargs):
         auth_logout(request)
@@ -53,7 +53,9 @@ class LogoutView(RedirectView):
 
 
 class RegistrationView(FormView):
-    pass
+    form_class = UserCreationForm
+    template_name = 'user/registration.html'
+    success_url = reverse_lazy('login')
 
 
 class TaskListView(ListView):

@@ -9,4 +9,8 @@
             <button type="submit" class="btn btn-primary">login</button>
         {% endbuttons %}
     </form>
+    If you do not have account, please click bellow:
+    <div id="browse_app">
+      <a class="btn btn-info" href="{% url 'registration' %}">Create Account</a>
+    </div>
 {% endblock %}
