@@ -11,6 +11,8 @@ class TaskRestListView(generics.ListAPIView):
         return Task.objects.filter(user=self.request.user)
 
 
-# class TaskRestView(generics.APIView):
-#     serializer = TaskSerializer
+class TaskRestView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TaskSerializer
+
+
 
