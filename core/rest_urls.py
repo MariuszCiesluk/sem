@@ -9,3 +9,8 @@ urlpatterns = (
     url(r'^list-elements/(?P<task_pk>[0-9]+)/$', TaskListElementRestListView.as_view(), name='task-element-list'),
     url(r'^list-elements/(?P<task_pk>[0-9]+)/(?P<pk>[0-9]+)/$', TaskListElementRestView.as_view(), name='edit-element-task'),
 )
+
+# from rest_framework.authtoken import views
+# urlpatterns += [
+#     url(r'^api-token-auth/', views.obtain_auth_token)
+# ]
