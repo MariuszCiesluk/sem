@@ -41,7 +41,7 @@ class TaskListElementRestListView(generics.ListCreateAPIView):
     serializer_class = TaskListElementSerializer
 
     def get_queryset(self):
-        return TaskListElement.objects.filter(task=self.request.GET.get('pk'))
+        return TaskListElement.objects.filter(task=int(self.kwargs.get('task_pk')))
 
 
 class TaskListElementRestView(generics.RetrieveUpdateDestroyAPIView):
@@ -50,7 +50,7 @@ class TaskListElementRestView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TaskListElementSerializer
 
     def get_queryset(self):
-        return TaskListElement.objects.filter(task=self.request.GET.get('pk'))
+        return TaskListElement.objects.filter(task=int(self.kwargs.get('task_pk')))
 
 
 

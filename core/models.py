@@ -7,6 +7,9 @@ from core.constants import PRIORITIES
 
 @reversion.register()
 class Task(models.Model):
+    """
+    basic model for Task, priorities are django choices. Defined in constants file
+    """
     user = models.ForeignKey(User)
     name = models.CharField(max_length=255)
     is_realized = models.NullBooleanField()
@@ -14,6 +17,9 @@ class Task(models.Model):
 
 
 class TaskListElement(models.Model):
+    """
+    Nested item of bigger Task
+    """
     task = models.ForeignKey(Task, related_name='items')
     checked = models.NullBooleanField()
     description = models.CharField(max_length=255)
