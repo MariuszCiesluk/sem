@@ -142,6 +142,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'reversion',
     'debug_toolbar',
+    # 'rest_framework.authtoken',
 )
 
 REST_FRAMEWORK = {

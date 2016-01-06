@@ -18,7 +18,7 @@ second, for read-write operations for single object
 
 
 class TaskRestListView(generics.ListCreateAPIView):
-    authentication_classes = (BasicAuthentication, )
+    authentication_classes = (BasicAuthentication, ) # TokenAuthentication
     permission_classes = (IsAuthenticated,)
     serializer_class = TaskSerializer
 
@@ -27,7 +27,7 @@ class TaskRestListView(generics.ListCreateAPIView):
 
 
 class TaskRestView(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (BasicAuthentication, )
+    authentication_classes = (BasicAuthentication, ) # TokenAuthentication
     permission_classes = (IsAuthenticated,)
     serializer_class = TaskSerializer
 
@@ -36,7 +36,7 @@ class TaskRestView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class TaskListElementRestListView(generics.ListCreateAPIView):
-    authentication_classes = (BasicAuthentication, )
+    authentication_classes = (BasicAuthentication, ) # TokenAuthentication
     permission_classes = (IsAuthenticated,)
     serializer_class = TaskListElementSerializer
 
@@ -45,7 +45,7 @@ class TaskListElementRestListView(generics.ListCreateAPIView):
 
 
 class TaskListElementRestView(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (BasicAuthentication, )
+    authentication_classes = (BasicAuthentication, ) # TokenAuthentication
     permission_classes = (IsAuthenticated,)
     serializer_class = TaskListElementSerializer
 
