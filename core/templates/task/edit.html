@@ -5,13 +5,15 @@
 {% block content %}
     <form method="post" action="{% url 'task_update' task.pk %}" class="form">
         {% csrf_token %}
+        <table class="table table-bordered">
          {% bootstrap_form form %}
-
+        </table>
         {{ item_formset.management_form }}
+        <table class="table table-bordered">
         {% for form in item_formset %}
             {% bootstrap_form form %}
         {% endfor %}
-
+        </table>
                 {% buttons %}
             <button type="submit" class="btn btn-primary">Update Task</button>
         {% endbuttons %}
