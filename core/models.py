@@ -14,7 +14,7 @@ class Task(models.Model):
 
 
 class TaskListElement(models.Model):
-    task = models.ForeignKey(Task)
+    task = models.ForeignKey(Task, related_name='items')
     checked = models.NullBooleanField()
     description = models.CharField(max_length=255)
 
