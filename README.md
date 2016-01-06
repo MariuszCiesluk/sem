@@ -5,7 +5,7 @@ This a simple Django app to prepare list with tasks and nested subtasks.
 Using: django1.9, bootstrap3, django-rest-framework, postgreSQL
 
 Funcionality:
-1. Register and login by user
+1. Register and login by user\n
 2. Add, erase, update a simple task
 3. Task with: priority, status (checked), name (description) and nested list with items
 4. Task could be moved on other person
