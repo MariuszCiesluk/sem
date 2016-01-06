@@ -15,6 +15,9 @@ class Task(models.Model):
     is_realized = models.NullBooleanField()
     priority = models.CharField(max_length=255, choices=PRIORITIES)
 
+    def __str__(self):
+        return 'task: {}'.format(self.name)
+
 
 class TaskListElement(models.Model):
     """
@@ -23,4 +26,7 @@ class TaskListElement(models.Model):
     task = models.ForeignKey(Task, related_name='items')
     checked = models.NullBooleanField()
     description = models.CharField(max_length=255)
+
+    def __str__(self):
+        return '{}, item: {}'.format(self.task, self.description)
 
