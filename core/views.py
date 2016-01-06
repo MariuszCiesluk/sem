@@ -124,6 +124,9 @@ class TaskUpdateView(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         return super(TaskUpdateView, self).dispatch(request, *args, **kwargs)
 
+    def get_queryset(self):
+        return super(TaskUpdateView, self).get_queryset().filter(user=self.request.user)
+
     def form_valid(self, form):
         formset = self.item_formset(self.request.POST)
         if formset.is_valid():
@@ -153,6 +156,9 @@ class TaskDeleteView(DeleteView):
     @method_decorator(login_required())
     def dispatch(self, request, *args, **kwargs):
         return super(TaskDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return super(TaskDeleteView, self).get_queryset().filter(user=self.request.user)
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
