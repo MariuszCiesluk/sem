@@ -19,8 +19,8 @@
                 <tr>
                     <td>elements</td>
                     <td>
-                        {% for element in task.tasklistelement_set.all %}
-                            {{ element.checked }}, {{ element.description }}<br>
+                        {% for element in task.items.all %}
+                           {{ element.checked }}, {{ element.description }}<br>
                         {% endfor %}
                     </td>
                 </tr>

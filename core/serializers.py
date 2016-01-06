@@ -28,9 +28,13 @@ class TaskSerializer(serializers.ModelSerializer):
         instance.priority = validated_data.get('priority', instance.priority)
         items = validated_data.pop('items')
         for item in items:
-            TaskListElement.objects.get_or_create(id=item.get('id'), task=instance, checked=item.get('checked'),
-                                                  description=item.get('description')
-                                                  )
-            # element_item.save()
+            try:
+                obj = TaskListElement.objects.get(id=item.get('id'))
+            except TaskListElement.DoesNotExist:
+                obj = TaskListElement()
+            obj.task = instance
+            obj.checked = item.get('checked')
+            obj.description = item.get('description')
+            obj.save()
         instance.save()
         return instance
